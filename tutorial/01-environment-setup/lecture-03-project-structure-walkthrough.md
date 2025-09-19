@@ -1,17 +1,54 @@
 # Lecture 3: Project Structure and TypeScript Configuration Walkthrough
 
-## Learning Objectives
+## Instructor Script
 
-By the end of this lecture, you will:
+Welcome to our third lecture. Now that Claude Code is configured for optimal learning, let's examine the foundation that makes everything possible - our project structure and TypeScript configuration. This isn't just a tour of files and folders. We're understanding how professional database applications are organized and configured for reliability, maintainability, and type safety.
 
-- Navigate the actual project structure and understand each file's purpose
-- Examine the TypeScript configuration that enables our database utilities
-- Understand the package.json scripts and their role in development workflow
-- Identify how environment configuration supports PostgreSQL integration
+Let me start by opening the project structure so we can see exactly what we're working with. Take a moment to open your code editor and navigate to the project root directory. You'll see a clean, focused structure that demonstrates professional Node.js database application organization.
 
-## Project Structure Overview
+Here's what we have: the project root contains our configuration files including .env.example for environment setup, package.json for dependencies and scripts, and tsconfig.json for TypeScript compilation. Inside the src directory, we have utils containing our verify-setup.ts verification utility. The tutorial directory contains our course materials.
 
-Let's examine the actual files in our project.
+This structure tells a story about how database applications should be organized. Configuration files live at the root for easy access and deployment automation. Source code is organized by purpose - utilities in the utils directory. The separation between source code and tutorial materials keeps the actual implementation clean and focused.
+
+Let's examine our TypeScript configuration by opening tsconfig.json. This file determines how TypeScript compiles our code and enforces type safety for our database operations. The configuration choices here directly impact the reliability and maintainability of our PostgreSQL integration.
+
+Looking at the compiler options, we're targeting ES2022, which provides modern JavaScript features while maintaining compatibility with Node.js 18 and higher. This target gives us access to advanced async operations and error handling patterns essential for database work.
+
+The module system is set to commonjs, ensuring compatibility with Node.js and the PostgreSQL libraries we use. The output directory is configured as dist, where compiled JavaScript files will be placed. The root directory is src, establishing clear separation between TypeScript source and compiled output.
+
+Strict mode is enabled, which enforces rigorous type checking. This is crucial for database applications where type errors can lead to runtime failures, connection issues, or data corruption. When you look at our verification utility at src/utils/verify-setup.ts, notice how TypeScript prevents common mistakes like passing incorrect types to the PostgreSQL connection pool.
+
+The configuration also enables source maps and declarations, supporting debugging and type information for any applications that might import our utilities. These settings reflect professional development practices that make code maintainable and debuggable in production environments.
+
+Now let's examine package.json to understand our dependencies and development workflow. Open package.json and look at the scripts section. These scripts define how we build, run, and verify our application.
+
+The verify-setup script runs our verification utility directly using ts-node. This allows us to execute TypeScript without compilation, perfect for development and verification workflows. The build script compiles TypeScript to JavaScript using the TypeScript compiler. The start script runs compiled JavaScript from the dist directory, representing production deployment patterns.
+
+Notice the dev script references src/index.ts, which doesn't currently exist. This indicates the project is structured to support a main application file, but currently focuses on verification utilities. This is common in professional development where you build foundational tools before implementing the main application.
+
+Let's look at the dependencies. The production dependencies include dotenv for environment variable management and pg for PostgreSQL connectivity. These are the minimal requirements for database operations. Notice how lean this dependency list is - we're not adding unnecessary complexity.
+
+The development dependencies include TypeScript and ts-node for development workflow, plus type definitions for Node.js and PostgreSQL. Type definitions ensure TypeScript understands the APIs we're using, preventing runtime errors and enabling intelligent code completion.
+
+Now open .env.example to see our environment configuration template. This file documents the environment variables our application requires. For PostgreSQL connectivity, we need the database host, port, database name, username, and password. These variables are validated in our verification utility at lines 24 through 37.
+
+The environment configuration approach demonstrates security best practices for database applications. Sensitive information like passwords never appears in source code. Instead, applications read configuration from environment variables, allowing different settings for development, staging, and production environments.
+
+Let's understand our source code organization. Currently, we have a single source file - src/utils/verify-setup.ts containing 151 lines of verification logic. This file serves multiple purposes: it validates environment setup, tests database connectivity, verifies pgvector functionality, and demonstrates proper error handling patterns.
+
+The utils directory organization suggests this verification utility is designed to be part of a larger application. Professional applications often include utilities for health checks, environment validation, and diagnostic operations. Our verification utility provides a foundation that production applications can extend and adapt.
+
+Let me walk you through the development workflow this structure enables. First, you copy .env.example to .env and configure your database settings. Next, you run npm run verify-setup to test connections and ensure everything works correctly. For ongoing development, you would use npm run dev, though this currently requires creating a main application file. For production deployment, you use npm run build to compile TypeScript.
+
+There's an important workflow limitation to understand. The dev script points to src/index.ts which doesn't exist. This means the project is currently configured for verification only, not full application development. This is intentional - we're focusing on understanding database integration before building complete applications.
+
+Here's how to use Claude Code effectively with this project structure. For project analysis, ask "Explain the purpose of each file in this Node.js TypeScript project structure." For configuration help, try "Help me understand why these TypeScript compiler options are chosen for a PostgreSQL project." For troubleshooting, use "The npm run dev script fails - analyze the package.json configuration and suggest fixes."
+
+The key insights from this project structure are that modern TypeScript configuration is optimized for Node.js database applications with strict type checking for reliability. Environment variables drive database connectivity, as demonstrated in our verification utility. The current codebase contains verification utilities rather than a full application, focusing on foundational database operations. Package.json scripts support a verification-focused workflow that prioritizes testing database connectivity.
+
+This structure demonstrates professional development practices that separate concerns, enforce type safety, and support reliable database operations. Every configuration choice serves the goal of building maintainable, reliable database applications.
+
+In our next lecture, we'll set up your Node.js and TypeScript development environment, building on this foundation to create the technical infrastructure needed for PostgreSQL database applications. Take some time to examine the files we've discussed and ensure you understand how TypeScript configuration, package.json scripts, and environment variables work together to support our database verification utility.
 
 ```
 nodejs-postgres-pgvector/
