@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-postgres-pgvector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "verify-setup": "ts-node src/utils/verify-setup.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.5.2",
+    "@types/pg": "^8.15.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
