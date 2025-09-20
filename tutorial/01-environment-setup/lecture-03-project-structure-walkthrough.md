@@ -2,9 +2,9 @@
 
 ## Instructor Script
 
-Welcome to our third lecture. Now that Claude Code is configured for optimal learning, let's examine the foundation that makes everything possible - our project structure and TypeScript configuration. This isn't just a tour of files and folders. We're understanding how professional database applications are organized and configured for reliability, maintainability, and type safety.
+Welcome to our third lecture. Now that Claude Code is configured for optimal learning, let's examine the foundation that makes everything possible - our project structure and TypeScript configuration. Beyond a simple tour of files and folders, you'll understand how professional database applications are organized and configured for reliability, maintainability, and type safety.
 
-Let me start by opening the project structure so we can see exactly what we're working with. Take a moment to open your code editor and navigate to the project root directory. You'll see a clean, focused structure that demonstrates professional Node.js database application organization.
+Open your code editor and navigate to the project root directory. You'll see a clean, focused structure that demonstrates professional Node.js database application organization.
 
 Here's what we have: the project root contains our configuration files including .env.example for environment setup, package.json for dependencies and scripts, and tsconfig.json for TypeScript compilation. Inside the src directory, we have utils containing our verify-setup.ts verification utility. The tutorial directory contains our course materials.
 

@@ -2,11 +2,11 @@
 
 ## Instructor Script
 
-Welcome back. In our previous lecture, we established the foundation for understanding vector databases and outlined what we'll build together. Now, we need to configure our most important development tool - Claude Code. This isn't just about setting up an AI assistant. We're configuring a learning partner that will help you understand every line of code we examine and every database concept we encounter.
+Welcome back. In our previous lecture, we established the foundation for understanding vector databases and outlined what we'll build together. Now, we need to configure our most important development tool - Claude Code. Claude Code will become your learning partner, helping you understand every line of code we examine and every database concept we encounter.
 
-Let me explain why starting with Claude Code configuration is critical for this course. Vector databases combine complex mathematical concepts with intricate database operations. When you're working through our verification utility, you'll encounter PostgreSQL connection pooling, vector distance calculations, error handling patterns, and asynchronous operations. Claude Code becomes your real-time tutor, explaining not just what the code does, but why specific implementation choices matter in production environments.
+Starting with Claude Code configuration matters because vector databases combine complex mathematical concepts with intricate database operations. When you're working through our verification utility, you'll encounter PostgreSQL connection pooling, vector distance calculations, error handling patterns, and asynchronous operations. Claude Code becomes your real-time tutor, explaining not just what the code does, but why specific implementation choices matter in production environments.
 
-Here's what makes Claude Code particularly valuable for database development. Traditional documentation tells you what a function does. Claude Code explains the reasoning behind implementation patterns, helps you troubleshoot connection issues in context, and provides insights about production considerations. This transforms learning from reading about concepts to understanding how they apply to real systems.
+Claude Code offers unique value for database development. Traditional documentation tells you what a function does. Claude Code explains the reasoning behind implementation patterns, helps you troubleshoot connection issues in context, and provides insights about production considerations. This transforms learning from reading about concepts to understanding how they apply to real systems.
 
 Let's get Claude Code configured for optimal learning throughout this course. First, navigate to claude.ai/code and sign in to your Anthropic account. If you don't have an account, take a moment to create one. This course relies heavily on Claude Code for explaining complex database concepts, so access is essential.
 
