@@ -1,6 +1,6 @@
 # Lecture 1: Course Introduction - PostgreSQL Vector Database Development
 
-## Instructor Script
+## Transcript
 
 Hello, and welcome to PostgreSQL Vector Database Development. I'm Joel Smalley, and I've spent the last 25 years working with technologies in enterprise environments, spanning fintech, blockchain and AI. This is the first course in a series I am writing that will guide you through the devlopment of an advanced RAG pipeline to supercharge your AI product.
 
