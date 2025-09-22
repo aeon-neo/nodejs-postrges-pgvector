@@ -1,6 +1,6 @@
 # Lecture 4: Node.js and TypeScript Development Setup
 
-## Instructor Script
+## Transcript
 
 Welcome to our fourth lecture, where we build the technical foundation for PostgreSQL vector database development. We're setting up Node.js and TypeScript - configuring a professional development environment that supports type-safe database operations.
 
@@ -12,17 +12,17 @@ If you need to install or upgrade Node.js, I recommend Node Version Manager (NVM
 
 Install NVM with curl, source your bash configuration, then install the latest LTS version with nvm install --lts and nvm use --lts. Verify the installation shows version 18 or higher.
 
-Our TypeScript configuration targets ES2022, visible in tsconfig.json at line 3. This requires Node.js 18 or higher for optimal compatibility. The verification utility validates this requirement automatically.
+Our TypeScript configuration targets ES2022. This requires Node.js 18 or higher for optimal compatibility. The verification utility validates this requirement automatically.
 
 Since you're building this project from scratch, let's create the complete project structure and install dependencies. Create the project directory with mkdir nodejs-postgres-pgvector, change into it, and initialize package.json with npm init -y.
 
-Install production dependencies for PostgreSQL connectivity and environment configuration. Install pg at version 8.16.3 (the PostgreSQL client library referenced at line 3 of our verification utility) and dotenv at version 17.2.2 for environment variable management. These are minimal dependencies for database operations.
+Install production dependencies for PostgreSQL connectivity and environment configuration. Install pg at version 8.16.3 (the PostgreSQL client library) and dotenv at version 17.2.2 for environment variable management. These are minimal dependencies for database operations.
 
 Install development dependencies for TypeScript development: typescript at version 5.9.2, ts-node at version 10.9.2, type definitions with @types/node at version 24.5.2 and @types/pg at version 8.15.5. These ensure TypeScript understands the APIs we're using.
 
 The pg library enables database connections and query execution. Dotenv handles .env file configuration, keeping sensitive credentials separate from source code. TypeScript provides compile-time type checking, preventing database errors before production. ts-node enables direct TypeScript execution without compilation steps.
 
-Create the project structure with mkdir -p src/utils and configuration files with touch tsconfig.json and touch .env.example. This follows professional Node.js organization.
+Create the project structure with mkdir -p src/utils and configuration files with touch tsconfig.json and touch .env.example.
 
 Create the TypeScript configuration optimized for database development. Set target to ES2022 for modern features, module to commonjs for Node.js compatibility, and enable strict type checking essential for database operations. Set outDir to dist and rootDir to src.
 
@@ -30,7 +30,7 @@ Strict mode prevents common mistakes like passing incorrect types to the Postgre
 
 Update package.json scripts: build script to tsc, dev script to ts-node src/index.ts, start script to node dist/index.js, and verify-setup script to ts-node src/utils/verify-setup.ts. These define our development workflow.
 
-Create the environment configuration documenting required database connection parameters: POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, POSTGRES_USER, and POSTGRES_PASSWORD. These are validated in our verification utility at lines 24-37.
+Create the environment configuration documenting required database connection parameters: POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, POSTGRES_USER, and POSTGRES_PASSWORD.
 
 Create an initial verification utility that tests environment setup. This begins with environment variable validation and Node.js version checking, providing the foundation for the complete verification system we'll build.
 
@@ -44,7 +44,7 @@ For Claude Code troubleshooting: "My Node.js version check in verify-setup.ts is
 
 Setup is correct when: Node.js version 18+ is installed and verified, all packages installed via npm install, TypeScript compilation working, and npm run verify-setup shows Node.js compatibility.
 
-Key insights: Node.js 18+ is required and validated by our verification utility. TypeScript configuration optimizes for database development with strict type checking. Project dependencies are minimal and focused on PostgreSQL integration. ts-node enables rapid development and testing.
+Check out the course notes, if you want to sollow all the commands to create this from scratch.
 
 In our next lecture, we'll install and configure PostgreSQL with the pgvector extension, setting up the database infrastructure our verification utility requires.
 
@@ -88,11 +88,13 @@ npm init -y
 ### 2. Install Dependencies
 
 **Production Dependencies:**
+
 ```bash
 npm install pg@8.16.3 dotenv@17.2.2
 ```
 
 **Development Dependencies:**
+
 ```bash
 npm install --save-dev typescript@5.9.2 ts-node@10.9.2 @types/node@24.5.2 @types/pg@8.15.5
 ```
@@ -163,51 +165,51 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 async function verifySetup() {
-    console.log("Verifying Development Environment Setup");
-    console.log("=".repeat(50));
+  console.log("Verifying Development Environment Setup");
+  console.log("=".repeat(50));
 
-    let allChecksPassed = true;
+  let allChecksPassed = true;
 
-    // Check Node.js version
-    console.log(`Node.js version: ${process.version}`);
-    if (parseInt(process.version.slice(1)) < 18) {
-        console.error("Node.js 18+ required");
-        allChecksPassed = false;
-    } else {
-        console.log("Node.js version compatible");
+  // Check Node.js version
+  console.log(`Node.js version: ${process.version}`);
+  if (parseInt(process.version.slice(1)) < 18) {
+    console.error("Node.js 18+ required");
+    allChecksPassed = false;
+  } else {
+    console.log("Node.js version compatible");
+  }
+
+  // Check environment variables
+  const requiredEnvVars = [
+    "POSTGRES_HOST",
+    "POSTGRES_PORT",
+    "POSTGRES_DB",
+    "POSTGRES_USER",
+    "POSTGRES_PASSWORD",
+  ];
+
+  for (const envVar of requiredEnvVars) {
+    if (!process.env[envVar]) {
+      console.error(`Missing environment variable: ${envVar}`);
+      allChecksPassed = false;
     }
+  }
 
-    // Check environment variables
-    const requiredEnvVars = [
-        "POSTGRES_HOST",
-        "POSTGRES_PORT",
-        "POSTGRES_DB",
-        "POSTGRES_USER",
-        "POSTGRES_PASSWORD",
-    ];
+  if (allChecksPassed) {
+    console.log("Environment variables configured");
+  }
 
-    for (const envVar of requiredEnvVars) {
-        if (!process.env[envVar]) {
-            console.error(`Missing environment variable: ${envVar}`);
-            allChecksPassed = false;
-        }
-    }
-
-    if (allChecksPassed) {
-        console.log("Environment variables configured");
-    }
-
-    if (allChecksPassed) {
-        console.log("\nBasic setup verification complete!");
-        console.log("Ready for PostgreSQL and pgvector setup!");
-    } else {
-        console.log("\nSetup verification failed");
-        console.log("Please fix the issues above and run again");
-    }
+  if (allChecksPassed) {
+    console.log("\nBasic setup verification complete!");
+    console.log("Ready for PostgreSQL and pgvector setup!");
+  } else {
+    console.log("\nSetup verification failed");
+    console.log("Please fix the issues above and run again");
+  }
 }
 
 if (require.main === module) {
-    verifySetup().catch(console.error);
+  verifySetup().catch(console.error);
 }
 
 export { verifySetup };
@@ -220,6 +222,7 @@ npm run verify-setup
 ```
 
 **Expected Output:**
+
 ```
 Verifying Development Environment Setup
 ==================================================
@@ -231,20 +234,3 @@ Basic setup verification complete!
 Ready for PostgreSQL and pgvector setup!
 ```
 
-## Troubleshooting Common Issues
-
-### Node.js Version Issues
-- **Problem**: "Node.js 18+ required"
-- **Solution**: Install Node.js 18+ using NVM (recommended) or direct download
-
-### TypeScript Compilation Errors
-- **Problem**: TypeScript compilation fails
-- **Solution**: Verify tsconfig.json configuration and installed dependencies
-
-### Permission Issues
-- **Problem**: npm permission errors
-- **Solution**: Use NVM instead of system-installed Node.js
-
-### Module Resolution Issues
-- **Problem**: Cannot find module errors
-- **Solution**: Ensure all dependencies installed with `npm install`
