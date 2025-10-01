@@ -4,25 +4,38 @@
 
 Now that Claude Code is configured, let's examine our project structure and TypeScript configuration to see how it's organized.
 
-For this lecture, we're jumping ahead to the final project that you can get from my Github repo. The link is in the resources.
+For this lecture, we're jumping ahead to the final project so you'll need to get that from my Github repo. The link is in the resources.
 
-So, in a new window in your code editor, connect to WSL then in the terminal clone the repo like this...
+Now, in a new window in your code editor, after connecting to WSL, in the terminal enter this git command:
 
 ```
 git clone git@github.com:aeon-neo/nodejs-postgres-pgvector.git
 ```
 
-I've already clone
+to clone the repo.
 
-After cloning, open the folder where you just cloned the repo.
+If you've already cloned, like I have, you'll get this error.
 
-Here, you can see a nice clean structure, well-organised structure that will be easy to maintain yourself or by someone else.
+Otherwise, the next step is to open the folder where you just cloned the project.
 
-The project root contains configuration files: .env.example that we will change to .env for environment setup, package.json for dependencies and scripts, and tsconfig.json for TypeScript compilation. Inside the src directory, we have utils containing our verification utility - verify-setup. The tutorial directory contains our course materials.
+Here, you can see a nice clean, well-organised structure that will be easy to maintain yourself or by someone else.
+
+The project root contains our configuration files:
+
+- .env.example that you'll' change to .env like I already have. This is where we store envrionment variables for security.
+- CLAUDE.md which we created in the previous lecture, where we store useful infromation and instructions for our AI assistant.
+- package.json where we specify our dependencies and scripts.
+- and finally tsconfig.json for our TypeScript configuration.
+
+Inside the src directory, we have a utils folder that, at the moment, only contains our verification utility called verify-setup.ts. The ts there denotes that this is a TypeScript file.
+
+The tutorial directory contains our course materials.
+
+---
 
 Configuration files live at the root for easy access and deployment automation.
 
-OK, let's take a look at tsconfig.json. This file determines how TypeScript compiles our code and enforces type safety for database operations.
+So now, let's take a look at tsconfig.json. This file determines how TypeScript compiles our code and enforces type safety for database operations.
 
 Fundamentally, NodeJS only executes JavaScript. It doesn't understand TypeScript. So we have to compile our TypeScript source code into pure JavaScript before NodeJS can run it.
 
